@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 4: The Interactive Super-Cube</title>
+    <style>
+        body { 
+            margin: 0; 
+            background-color: #111; 
+            overflow: hidden; 
+            font-family: monospace; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        #info { 
+            position: absolute; 
+            top: 20px; 
+            left: 20px; 
+            color: #fff; 
+            pointer-events: none; 
+            z-index: 10; 
+        }
+        h1 { margin: 0; font-size: 24px; letter-spacing: 2px; }
+        p { margin: 5px 0; color: #888; }
+        
+        /* Встроенный в браузер 3D куб на CSS3 */
+        .scene {
+            width: 200px;
+            height: 200px;
+            perspective: 600px;
+        }
+        .cube {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: rotateCube 8s infinite linear;
+        }
+        .face {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border: 2px solid #3498db;
+            background: rgba(52, 152, 219, 0.2);
+            box-shadow: 0 0 20px rgba(52, 152, 219, 0.4);
+        }
+        /* Координаты граней куба в пространстве */
+        .front  { transform: rotateY(  0deg) translateZ(100px); }
+        .back   { transform: rotateY(180deg) translateZ(100px); }
+        .right  { transform: rotateY( 90deg) translateZ(100px); }
+        .left   { transform: rotateY(-90deg) translateZ(100px); }
+        .top    { transform: rotateX( 90deg) translateZ(100px); }
+        .bottom { transform: rotateX(-90deg) translateZ(100px); }
+
+        @keyframes rotateCube {
+            from { transform: rotateX(0deg) rotateY(0deg); }
+            to { transform: rotateX(360deg) rotateY(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div id="info">
+        <h1>DAY 4: THE SUPER-CUBE</h1>
+        <p>Pure Web 3D Local Experiment</p>
+    </div>
+
+    <!-- Сам трехмерный объект, созданный без единой библиотеки -->
+    <div class="scene">
+        <div class="cube">
+            <div class="face front"></div>
+            <div class="face back"></div>
+            <div class="face right"></div>
+            <div class="face left"></div>
+            <div class="face top"></div>
+            <div class="face bottom"></div>
+        </div>
+    </div>
+</body>
+</html>
